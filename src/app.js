@@ -1,5 +1,7 @@
 import { useState } from "react";
+import Posts from "./Posts";
 
+// example of a web worker
 const poller = new Worker(new URL("./poller.js", import.meta.url), {
   type: "module",
 });
@@ -13,7 +15,12 @@ const App = () => {
   poller.onmessage = (ev) => {
     setData(ev.data);
   };
-  return <div>Set interval inside a web worker {data}</div>;
+  return (
+    <div>
+      <span>Set interval inside a web worker {data}</span>
+      <Posts />
+    </div>
+  );
 };
 
 export default App;
